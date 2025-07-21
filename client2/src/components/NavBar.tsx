@@ -10,7 +10,7 @@ function BasicExample() {
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
       <Container className='d-flex justify-space-between align-items-center'>
-        <Navbar.Brand href='/Home'>Home</Navbar.Brand>
+        <Navbar.Brand href='/Home'>Speech4You</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar id="basic-navbar-nav">
           <Nav className="me-auto align-items-center">
