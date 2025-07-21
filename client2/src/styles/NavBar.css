@@ -1,0 +1,18 @@
+a {
+    color: #fff !important
+}
+/* Dropdown menu (visa dėžutė) */
+.custom-dropdown .dropdown-menu {
+  background-color: #222; /* Tamsus fonas */
+}
+
+/* Dropdown itemai */
+.custom-dropdown .dropdown-item {
+  color: #fff; /* Teksto spalva */
+}
+
+.custom-dropdown .dropdown-item:hover,
+.custom-dropdown .dropdown-item:focus {
+  background-color: #444; /* Hover fonas */
+  color: #fff;
+}
