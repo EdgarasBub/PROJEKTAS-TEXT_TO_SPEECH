@@ -1,24 +1,28 @@
 import React from 'react';
-import {Navigate,BrowserRouter, Route, Routes} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import TextToSpeech from './pages/TextToSpeech';
-import Navbar from './components/NavBar'
+import Navbar from './components/NavBar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
+import TextToSpeech from './pages/TextToSpeech';
 
 const App: React.FC = () => {
   return (
-    <main className="bg-gray-100 min-h-screen p-4">
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <BrowserRouter>
-            <Navbar />
-            <div className='pages'>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/Home" element={<Navigate to="/" replace />} />
-                <Route path='/TextToSpeech' element={<TextToSpeech />} />
-              </Routes>
-            </div>
+        <Navbar />
+
+        <main style={{ flex: 1 }} className="bg-gray-100">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Navigate to="/" replace />} />
+            <Route path="/TextToSpeech" element={<TextToSpeech />} />
+          </Routes>
+        </main>
+
+        <Footer />
       </BrowserRouter>
-    </main>
+    </div>
   );
 };
 

@@ -1,9 +1,14 @@
-body,html {
+body,html #root{
   font-family: Arial, sans-serif;
-  background-color: #f3f3f3;
+  background-color: hsl(0, 0%, 95%);
   margin: 0 auto;
   padding: 0;
+  width: 100%;
   background-color: #ccc;
+}
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 /* .container {

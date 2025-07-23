@@ -1,8 +1,17 @@
 #root {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+.pages {
+  min-height: 150vh;
+  background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
 }
 
 .logo {
