@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {Navigate,BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import TextToSpeech from './pages/TextToSpeech';
 import Navbar from './components/NavBar'
@@ -12,12 +12,12 @@ const App: React.FC = () => {
             <Navbar />
             <div className='pages'>
               <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/Home" element={<Navigate to="/" replace />} />
                 <Route path='/TextToSpeech' element={<TextToSpeech />} />
               </Routes>
             </div>
       </BrowserRouter>
-      <Home />
     </main>
   );
 };
