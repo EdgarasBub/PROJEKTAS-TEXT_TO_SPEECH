@@ -46,6 +46,14 @@ const Home: React.FC = () => {
                 </button>
               </div>
           <li>⚙️ Lengva integracija į bet kokią aplikaciją</li>
+              <div style={{ textAlign: 'center' }}>
+                <button
+                  className="utils-button"
+                  onClick={() => navigate('/TextToSpeech')}
+                >
+                  🚀 Išbandyti dabar
+                </button>
+              </div>
         </ul>
       </div>
     </main>

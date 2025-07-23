@@ -8,11 +8,11 @@ import TextToSpeech from './pages/TextToSpeech';
 
 const App: React.FC = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '200vh'}}>
       <BrowserRouter>
         <Navbar />
 
-        <main style={{ flex: 1 }} className="bg-gray-100">
+        <main style={{ flex: 1 }} className="bg-gray-100 pages">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Navigate to="/" replace />} />

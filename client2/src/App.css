@@ -4,15 +4,15 @@
   padding: 2rem;
   text-align: center;
 }
-.pages {
-  min-height: 150vh;
+/* .pages {
+  min-height: 250vh;
   background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
 
-}
+} */
 
 .logo {
   height: 6em;

@@ -1,7 +1,7 @@
 /* src/pages/home.css */
 
 .home-container {
-  min-height: 100vh;
+  min-height: 175vh;
   background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
   display: flex;
   align-items: center;

@@ -1,14 +1,10 @@
-/* textToSpeech.css */
-
 .tts-container {
-  
   max-width: 600px;
-  margin: 2.5rem auto;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .tts-title {
@@ -19,32 +15,43 @@
 
 .tts-textarea {
   width: 100%;
-  height: 8rem;
+  height: 150px;
   padding: 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.75rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
   resize: none;
-  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.tts-select-container {
+  margin-bottom: 1rem;
+}
+
+.tts-select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
 }
 
 .tts-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
-  background-color: #2563eb;
+  background-color: #555;
   color: #fff;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 0.75rem;
-  font-size: 1rem;
+  border-radius: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .tts-button:hover {
-  background-color: #1d4ed8;
+  background-color: #555;
 }
+
 .text-to-speech-container {
-  min-height: 100vh;
+  min-height: 175vh;
   background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
   display: flex;
   align-items: center;
