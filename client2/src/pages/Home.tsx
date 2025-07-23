@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import "../styles/Home.css"; // Importuojame CSS failą
+import '../styles/Utils.css'; // Importuojame bendrą stilių failą
 
 const Home: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <main className="home-container">
@@ -25,12 +25,12 @@ const Home: React.FC = () => {
         </ul>
 
         <div style={{ textAlign: 'center' }}>
-          {/* <button
-            className="home-button"
-            onClick={() => navigate('/demo')}
+          <button
+            className="utils-button"
+            onClick={() => navigate('/TextToSpeech')}
           >
             🚀 Išbandyti dabar
-          </button> */}
+          </button>
         </div>
       </div>
     </main>

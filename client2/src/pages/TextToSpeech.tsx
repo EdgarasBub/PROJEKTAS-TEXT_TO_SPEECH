@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { speakText } from '../utils/tts';
-// Jei nori CSS vietoj Tailwind:
-// import '../styles/textToSpeech.css';
+import '../styles/textToSpeech.css'; // ✅ Nuoroda į CSS failą
+import '../styles/Utils.css'
 
 const TextToSpeech: React.FC = () => {
   const [text, setText] = useState('');
@@ -15,17 +15,17 @@ const TextToSpeech: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
-      <h1 className="text-2xl font-bold mb-4">🗣️ Teksto skaitymo programa</h1>
+    <div className="tts-container">
+      <h1 className="tts-title">🗣️ Teksto skaitymo programa</h1>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Įveskite tekstą..."
-        className="w-full h-32 p-4 border border-gray-300 rounded-xl resize-none text-lg"
+        className="tts-textarea"
       />
       <button
         onClick={handleSpeak}
-        className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+        className="utils-button"
       >
         🔊 Skaityti tekstą
       </button>
