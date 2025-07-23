@@ -43,3 +43,11 @@
 .tts-button:hover {
   background-color: #1d4ed8;
 }
+.text-to-speech-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}

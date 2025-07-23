@@ -15,21 +15,23 @@ const TextToSpeech: React.FC = () => {
   };
 
   return (
-    <div className="tts-container">
-      <h1 className="tts-title">🗣️ Teksto skaitymo programa</h1>
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Įveskite tekstą..."
-        className="tts-textarea"
-      />
-      <button
-        onClick={handleSpeak}
-        className="utils-button"
-      >
-        🔊 Skaityti tekstą
-      </button>
-    </div>
+    <main className="text-to-speech-container">
+      <div className="tts-container">
+        <h1 className="tts-title">🗣️ Teksto skaitymo programa</h1>
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Įveskite tekstą..."
+          className="tts-textarea"
+        />
+        <button
+          onClick={handleSpeak}
+          className="utils-button"
+        >
+          🔊 Skaityti tekstą
+        </button>
+      </div>
+    </main>
   );
 };
 
