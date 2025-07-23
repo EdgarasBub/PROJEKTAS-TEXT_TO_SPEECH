@@ -1,5 +1,22 @@
 a {
-    color: #fff !important
+  position: relative;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* šiek tiek žemiau teksto */
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
 }
 /* Dropdown menu (visa dėžutė) */
 .custom-dropdown .dropdown-menu {
