@@ -8,8 +8,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function BasicExample() {
   return (
-    <Navbar expand="lg" bg="dark" variant="dark">
-      <Container className='d-flex justify-space-between align-items-center'>
+    <Navbar expand="lg" className='FixNavBar' >
+      <Container className=' d-flex justify-space-between align-items-center'>
         <Navbar.Brand href='/Home'>Speech4You</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar id="basic-navbar-nav">
