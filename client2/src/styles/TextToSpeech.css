@@ -71,3 +71,64 @@
   width: 100%;
   accent-color: #444;
 }
+.utils-button-dinamic {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #444; 
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.utils-button-dinamic:hover {
+  background-color: #555;
+  transform: scale(1.03);
+}
+
+/* 🔴 Kai skaitoma — keičiasi į raudoną */
+.utils-button-dinamic.reading {
+  background-color: #dc2626;
+}
+
+.utils-button-dinamic.reading:hover {
+  background-color: #991b1b;
+}
+.reading-indicator {
+  margin-bottom: 1rem;
+  color: #dc2626;
+  font-weight: 500;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+.tts-slider-container {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.tts-slider {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-container {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.2s ease;
+}

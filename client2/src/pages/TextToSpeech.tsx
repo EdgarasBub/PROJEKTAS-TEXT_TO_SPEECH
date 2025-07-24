@@ -10,6 +10,9 @@ const TextToSpeech: React.FC = () => {
   const [rate, setRate] = useState(1);
   const [pitch, setPitch] = useState(1);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [volume, setVolume] = useState(1); // * Pridėta
+  const [progress, setProgress] = useState(0); // * Pridėta
+
 
 useEffect(() => {
   const synth = window.speechSynthesis;
@@ -37,33 +40,49 @@ useEffect(() => {
 }, []);
 
 
-  const handleSpeak = () => {
-    const synth = window.speechSynthesis;
+const handleSpeak = () => {
+  const synth = window.speechSynthesis;
 
-    if (isSpeaking) {
-      synth.cancel(); 
-      setIsSpeaking(false);
-      return;
+  if (isSpeaking) {
+    synth.cancel(); // Sustabdo skaitymą
+    setIsSpeaking(false);
+    setProgress(0); // * Nulina progresą
+    return;
+  }
+
+  if (!text.trim()) {
+    alert('Prašome įvesti tekstą!');
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voice = voices.find(v => v.name === selectedVoice);
+  if (voice) utterance.voice = voice;
+
+  utterance.volume = volume; // * Garsumas
+  utterance.rate = rate;     // * Kalbėjimo greitis
+  utterance.pitch = pitch;   // * Tonas
+
+  const totalLength = text.length;
+  let currentLength = 0;
+
+  utterance.onboundary = (event) => {
+    if (event.charIndex !== undefined) {
+      currentLength = event.charIndex;
+      const percent = Math.min((currentLength / totalLength) * 100, 100);
+      setProgress(percent); // * Atnaujina progresą
     }
-    if (!text.trim()) {
-      alert('Prašome įvesti tekstą!');
-      return;
-    }
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    const voice = voices.find(v => v.name === selectedVoice);
-    if (voice) utterance.voice = voice;
-
-    utterance.rate = rate; // * Pridėta
-    utterance.pitch = pitch; // * Pridėta
-
-      utterance.onend = () => {
-      setIsSpeaking(false); // * Kai baigia skaityti
-    };
-
-    synth.speak(utterance);
-    setIsSpeaking(true); // * Nustatome kalbėjimą į true
   };
+
+  utterance.onend = () => {
+    setIsSpeaking(false);
+    setProgress(100); // * Užbaigia progresą
+  };
+
+  synth.speak(utterance);
+  setIsSpeaking(true); // * Nustato kalbėjimo būseną
+};
+
 
   return (
     <main className='text-to-speech-container'>
@@ -106,7 +125,17 @@ useEffect(() => {
             onChange={(e) => setRate(Number(e.target.value))}
             className="tts-slider"
           />
-
+          <label htmlFor="volume">🔊 Garsumas: {Math.round(volume * 100)}%</label>
+          <input
+            type="range"
+            id="volume"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            className="tts-slider"
+          />
           <label htmlFor="pitch">🎵 Tonas: {pitch.toFixed(1)}</label>
           <input
             id="pitch"
@@ -119,8 +148,22 @@ useEffect(() => {
             className="tts-slider"
           />
         </div>
+            {isSpeaking && (
+            <div className="reading-indicator">🔊 Skaitoma...</div>
+          )}
+          {isSpeaking && (
+  <div className="progress-bar-container">
+    <div
+      className="progress-bar"
+      style={{ width: `${progress}%` }}
+    ></div>
+  </div>
+)}
 
-        <button onClick={handleSpeak} className="utils-button">
+        <button
+          onClick={handleSpeak}
+          className={`utils-button-dinamic ${isSpeaking ? 'reading' : ''}`} // *
+        >
           {isSpeaking ? '⏹️ Sustabdyti' : '🔊 Skaityti tekstą'}
         </button>
       </div>
