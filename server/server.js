@@ -1,0 +1,45 @@
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import signupRoutes from './routes/signup.js';
+import loginRoutes from './routes/login.js';
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 5001; // Naudojame 5001
+
+
+mongoose.connect(process.env.dbUrl, {
+    serverSelectionTimeoutMS: 5000
+})
+    .then(() => console.log('✅ Prisijungta prie MongoDB'))
+    .catch(err => {
+        console.error('❌ Mongo klaida:', err);
+        process.exit(1);
+    });
+
+// CORS konfigūracija
+app.use(cors({
+    origin: 'http://localhost:5173', // Leidžiame frontendui ant 5173
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
+
+app.use(express.json());
+
+// Maršrutai
+app.use('/api/auth', signupRoutes);
+app.use('/api/auth', loginRoutes);
+
+// Testinis endpoint'as
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'OK', timestamp: new Date() });
+});
+
+// Serverio paleidimas
+app.listen(PORT, () => {
+    console.log(`🚀 Backend veikia: http://localhost:${PORT}`);
+});

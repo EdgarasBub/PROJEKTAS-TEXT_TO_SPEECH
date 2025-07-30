@@ -1,0 +1,44 @@
+a {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* šiek tiek žemiau teksto */
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+/* Dropdown menu (visa dėžutė) */
+.custom-dropdown .dropdown-menu {
+  background-color: #222; /* Tamsus fonas */
+}
+
+/* Dropdown itemai */
+.custom-dropdown .dropdown-item {
+  color: #fff; /* Teksto spalva */
+}
+
+.custom-dropdown .dropdown-item:hover,
+.custom-dropdown .dropdown-item:focus {
+  background-color: #444; /* Hover fonas */
+  color: #fff;
+}
+
+.FixNavBar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #343a40; /* Tamsus fonas */
+}

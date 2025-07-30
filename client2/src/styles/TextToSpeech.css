@@ -1,0 +1,273 @@
+.tts-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tts-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.tts-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  resize: none;
+  margin-bottom: 1rem;
+}
+
+.tts-select-container {
+  margin-bottom: 1rem;
+}
+
+.tts-select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.tts-button {
+  background-color: #555;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tts-button:hover {
+  background-color: #555;
+}
+
+.text-to-speech-container {
+  min-height: 175vh;
+  background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tts-slider-group {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tts-slider {
+  width: 100%;
+  accent-color: #444;
+}
+.utils-button-dinamic {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.utils-button-dinamic:hover {
+  background-color: #555;
+  transform: scale(1.03);
+}
+
+/* 🔴 Kai skaitoma — keičiasi į raudoną */
+.utils-button-dinamic.reading {
+  background-color: #dc2626;
+}
+
+.utils-button-dinamic.reading:hover {
+  background-color: #991b1b;
+}
+.reading-indicator {
+  margin-bottom: 1rem;
+  color: #dc2626;
+  font-weight: 500;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+.tts-slider-container {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.tts-slider {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-container {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.2s ease;
+}
+.tts-settings-toggle {
+  margin-top: 1.5rem;
+}
+
+/* Bendras mygtuko stilius */
+.tts-settings-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #444; /* pagrindinė spalva */
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* pridėtas transition */
+}
+
+/* Hover efektas */
+.tts-settings-button:hover {
+  background-color: #555; /* hover spalva */
+  transform: scale(1.02); /* nedidelis padidinimas */
+}
+
+/* Užverti mygtukas */
+.tts-settings-button.danger {
+  background-color: #444;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tts-settings-button.danger:hover {
+  background-color: #555;
+  transform: scale(1.02);
+}
+
+/* Nustatymų meniu animacija */
+.tts-settings-menu {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  background-color: #f0f4ff;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease,
+    padding 0.3s ease;
+}
+
+/* Kai atidarytas */
+.tts-settings-menu.open {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 1.5rem;
+}
+
+/* Kai uždarytas */
+.tts-settings-menu.closed {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  padding: 0 1rem;
+}
+.tts-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.tts-setting-row label {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+}
+
+.tts-setting-row input[type="range"] {
+  flex: 2;
+  accent-color: #444;
+}
+
+.tts-setting-row span {
+  width: 40px;
+  text-align: right;
+  font-size: 0.95rem;
+  color: #666;
+}
+.settings-toggle {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: #444;
+  transition: background-color 0.3s ease;
+}
+
+.settings-toggle:hover {
+  background-color: #555;
+}
+
+.tts-settings-menu {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f3f3f3;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.tts-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.tts-setting-row label {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+}
+
+.tts-setting-row input[type="range"] {
+  flex: 2;
+  accent-color: #444;
+}
+
+.tts-setting-row span {
+  width: 50px;
+  text-align: right;
+  color: #666;
+}
