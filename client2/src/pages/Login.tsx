@@ -1,70 +1,133 @@
 import React, { useState } from 'react';
-import '../styles/login.css';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/auth/shared.css';
+import '../styles/auth/login.css';
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [keepLoggedIn, setKeepLoggedIn] = useState(false); // * Pridėta
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    keepLoggedIn: false
+  });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Prisijungimas su:', email, password, 'Keep logged in:', keepLoggedIn);
-
-    // Čia vėliau bus API login logika
-    // Galima išsaugoti tokeną localStorage ar sessionStorage pagal keepLoggedIn
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: type === 'checkbox' ? checked : value
+    }));
   };
 
-  const handleForgotPassword = () => {
-    alert('Slaptažodžio atstatymo funkcija dar neįgyvendinta.');
-    // Galima redirectinti į /reset-password puslapį, kai jį sukursi
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      setIsLoading(true);
+      const response = await fetch('http://localhost:5001/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Prisijungimo klaida');
+
+      // Token saugojimas
+      const storage = formData.keepLoggedIn ? localStorage : sessionStorage;
+      storage.setItem('token', data.token);
+
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Techninė klaida');
+      console.error('Prisijungimo klaida:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <main className="login-page">
-      <div className="login-container">
-        <h2>🔐 Prisijungimas</h2>
-        <form onSubmit={handleLogin}>
-          <label htmlFor="email">El. paštas</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <main className="auth-page">
+      <div className="auth-container">
+        <h2 className="login-header">🔐 Prisijungimas</h2>
+        
+        {error && <div className="auth-error">{error}</div>}
 
-          <label htmlFor="password">Slaptažodis</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="auth-input-group">
+            <label htmlFor="email">El. pašto adresas</label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="auth-input"
+              required
+              autoComplete="username"
+            />
+          </div>
 
-          <div className="login-options">
-            <label className="keep-logged-in">
+          <div className="auth-input-group">
+            <label htmlFor="password">Slaptažodis</label>
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="auth-input"
+              required
+              minLength={6}
+              autoComplete="current-password"
+            />
+          </div>
+
+          <div className="auth-options">
+            <label className="auth-checkbox">
               <input
                 type="checkbox"
-                checked={keepLoggedIn}
-                onChange={(e) => setKeepLoggedIn(e.target.checked)}
+                id="keepLoggedIn"
+                checked={formData.keepLoggedIn}
+                onChange={handleChange}
               />
-              Prisiminti mane
+              <span>Prisiminti mane</span>
             </label>
 
             <button
               type="button"
-              className="forgot-password"
-              onClick={handleForgotPassword}
+              className="auth-link-button"
+              onClick={() => navigate('/reset-password')}
             >
-              Pamiršai slaptažodį?
+              Pamiršote slaptažodį?
             </button>
           </div>
 
-          <button type="submit" className="utils-button">
-            Prisijungti
+          <button
+            type="submit"
+            className="auth-button"
+            disabled={isLoading}
+            aria-busy={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="auth-spinner" aria-hidden="true"></span>
+                Prisijungiama...
+              </>
+            ) : 'Prisijungti'}
           </button>
         </form>
+
+        <div className="auth-footer">
+          <p>Neturite paskyros?</p>
+          <Link to="/signup" className="auth-link">
+            Registruokitės
+          </Link>
+        </div>
       </div>
     </main>
   );

@@ -5,7 +5,7 @@ import Navbar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import TextToSpeech from './pages/TextToSpeech';
-import Login from './pages/LogIn';
+import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 const App: React.FC = () => {

@@ -1,88 +1,145 @@
 import React, { useState } from 'react';
-import '../styles/login.css';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/auth/shared.css';
+import '../styles/auth/signup.css';
 
 const Signup: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  // Formos būsena
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSignup = async (e: React.FormEvent) => {
+  // Įvesties valdymas
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  // Registracijos pateikimas
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
+    // Validacija
+    const { email, password, confirmPassword } = formData;
+    if (!email || !password || !confirmPassword) {
+      setError('Visi laukai yra privalomi');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Slaptažodis turi būti bent 6 simbolių');
+      return;
+    }
 
     if (password !== confirmPassword) {
-      setError('Slaptažodžiai nesutampa!');
+      setError('Slaptažodžiai nesutampa');
       return;
     }
 
     try {
+      setIsLoading(true);
       const response = await fetch('http://localhost:5001/api/auth/signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
       });
 
       const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Registracija nepavyko');
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Registracija nepavyko');
-      }
-
-      // Sėkminga registracija
-      console.log('Vartotojas užregistruotas:', data);
-      alert('Registracija sėkminga! Galite prisijungti.');
-      // Nukreipimas į login puslapį (jei naudojate react-router)
-      // navigate('/login');
-
+      navigate('/login', {
+        state: {
+          prefilledEmail: email,
+          successMessage: 'Registracija sėkminga! Galite prisijungti.'
+        }
+      });
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'Techninė klaida');
       console.error('Registracijos klaida:', err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <main className="login-page">
-      <div className="login-container">
-        <h2>📝 Registracija</h2>
-        {error && <div className="error-message">{error}</div>}
-        <form onSubmit={handleSignup}>
-          <label htmlFor="email">El. paštas</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <main className="auth-page">
+      <div className="auth-container">
+        <h2 className="signup-header">📝 Naujos paskyros kūrimas</h2>
+        
+        {error && <div className="auth-error">{error}</div>}
 
-          <label htmlFor="password">Slaptažodis</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="auth-input-group">
+            <label htmlFor="email">El. pašto adresas</label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="auth-input"
+              required
+              autoComplete="username"
+            />
+          </div>
 
-          <label htmlFor="confirm-password">Patvirtinkite slaptažodį</label>
-          <input
-            type="password"
-            id="confirm-password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
+          <div className="auth-input-group">
+            <label htmlFor="password">Slaptažodis</label>
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="auth-input"
+              required
+              minLength={6}
+              autoComplete="new-password"
+            />
+            <p className="password-hint">(min. 6 simboliai)</p>
+          </div>
 
-          <button type="submit" className="utils-button">
-            Registruotis
+          <div className="auth-input-group">
+            <label htmlFor="confirmPassword">Patvirtinkite slaptažodį</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="auth-input"
+              required
+              autoComplete="new-password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="auth-button"
+            disabled={isLoading}
+            aria-busy={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="auth-spinner" aria-hidden="true"></span>
+                Registruojama...
+              </>
+            ) : 'Registruotis'}
           </button>
         </form>
+
+        <div className="auth-footer">
+          <p>Jau turite paskyrą?</p>
+          <Link to="/login" className="auth-link">
+            Prisijungti
+          </Link>
+        </div>
       </div>
     </main>
   );

@@ -1,52 +1,63 @@
-// routes/authRoutes.js
 import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
-import bcrypt from 'bcrypt';
 
 const router = express.Router();
 
-// REGISTER endpoint
-router.post('/register', async (req, res) => {
-    const { username, email, password } = req.body;
-
+// POST /api/auth/signup
+router.post('/signup', async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const { email, password } = req.body;
 
-        const newUser = new User({
-            username,
-            email,
-            password: hashedPassword
-        });
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Privalomi visi laukai' });
+        }
 
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({ message: 'Vartotojas jau egzistuoja' });
+        }
+
+        const newUser = new User({ email, password });
         await newUser.save();
-        res.status(201).json({ message: 'Vartotojas sukurtas!' });
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Klaida registruojant vartotoją' });
+        res.status(201).json({ message: 'Registracija sėkminga' });
+    } catch (error) {
+        console.error('❌ Registracijos klaida:', error);
+        res.status(500).json({ message: 'Serverio klaida' });
     }
 });
 
-// LOGIN endpoint
+// POST /api/auth/login
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
     try {
-        const existingUser = await User.findOne({ email });
-        if (!existingUser) {
-            return res.status(404).json({ error: 'Vartotojas nerastas' });
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Privalomi visi laukai' });
         }
 
-        const isMatch = await bcrypt.compare(password, existingUser.password);
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ message: 'Neteisingi duomenys' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ error: 'Neteisingas slaptažodis' });
+            return res.status(401).json({ message: 'Neteisingi duomenys' });
         }
 
-        res.status(200).json({ message: 'Prisijungimas sėkmingas!' });
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.SECRET,
+            { expiresIn: '1h' }
+        );
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Prisijungimo klaida' });
+        res.json({ token, userId: user._id });
+    } catch (error) {
+        console.error('❌ Prisijungimo klaida:', error);
+        res.status(500).json({ message: 'Serverio klaida' });
     }
 });
 

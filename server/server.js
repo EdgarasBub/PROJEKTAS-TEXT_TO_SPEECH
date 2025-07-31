@@ -2,8 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import signupRoutes from './routes/signup.js';
-import loginRoutes from './routes/login.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -31,8 +30,7 @@ app.use(cors({
 app.use(express.json());
 
 // Maršrutai
-app.use('/api/auth', signupRoutes);
-app.use('/api/auth', loginRoutes);
+app.use('/api/auth', authRoutes);
 
 // Testinis endpoint'as
 app.get('/api/health', (req, res) => {
