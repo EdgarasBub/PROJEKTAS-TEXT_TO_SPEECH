@@ -1,49 +1,69 @@
-/* src/pages/home.css */
-
+/* Pagrindiniai stiliai */
 .home-container {
-  min-height: 175vh;
-  background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 160px);
 }
 
 .home-card {
-  background-color: white;
-  border: 1px solid #c3ddfd;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  padding: 2.5rem;
-  max-width: 768px;
-  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .home-title {
-  font-size: 2.25rem;
+  color: #444;
   font-weight: 800;
-  color: #1e40af;
-  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .home-description {
-  font-size: 1.125rem;
-  color: #374151;
-  margin-bottom: 1.5rem;
+  color: #666;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
-.home-list {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 2rem;
+/* Funkcijų tinklelis */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-.home-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  color: #1f2937;
-  font-size: 1rem;
+.feature-item {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
 }
 
+.feature-item:hover {
+  background: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-color: #ddd;
+}
+
+.feature-item h3 {
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.feature-item p {
+  color: #555;
+  min-height: 60px;
+}
+
+/* Mygtukai */
+.btn-dark {
+  background-color: #444 !important;
+  border: none;
+  padding: 0.5rem 1.5rem;
+}
+
+.btn-dark:hover {
+  background-color: #555 !important;
+}
