@@ -43,7 +43,7 @@ const Login: React.FC = () => {
       const storage = formData.keepLoggedIn ? localStorage : sessionStorage;
       storage.setItem('token', data.token);
 
-      navigate('/dashboard');
+      navigate('/home');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Techninė klaida');
       console.error('Prisijungimo klaida:', err);

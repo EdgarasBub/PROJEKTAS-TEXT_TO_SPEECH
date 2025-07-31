@@ -1,45 +1,94 @@
-import {Link} from 'react-router-dom';
-import '../styles/NavBar.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap';
+import { PersonFill, BoxArrowRight, HouseDoorFill } from 'react-bootstrap-icons';
+import '../styles/NavBar.css';
 
-function BasicExample() {
+function NavigationBar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Tikriname prisijungimo būseną (pakeiskite su savo auth logika)
+  useEffect(() => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    setIsLoggedIn(false);
+    // Nukreipimas į pagrindinį puslapį po atsijungimo
+    window.location.href = '/';
+  };
+
   return (
-    <Navbar expand="lg" className='FixNavBar' >
-      <Container className=' d-flex justify-space-between align-items-center'>
-        <Navbar.Brand href='/Home'>Speech4You</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar id="basic-navbar-nav">
-          <Nav className="me-auto align-items-center">
-
-            <Link className='navbar-brand' to='/Home'>Home</Link>
-            <Link className='navbar-brand' to="/TextToSpeech">TextToSpeech</Link>
-            <Link className="utils-button" to="/login" >LOG IN</Link>
-            <Link className="utils-button" to="/Signup" >SIGN UP</Link>
-
-                <NavDropdown title="Papildomai" id="basic-nav-dropdown" className="custom-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="/Contacts">Contacts</NavDropdown.Item>
-                </NavDropdown>
+    <Navbar bg="dark" variant="dark" expand="lg" className="fixed-navbar">
+      <Container fluid>
+        <Navbar.Brand as={Link} to="/">Speech4You</Navbar.Brand>
+        
+        <Navbar.Toggle aria-controls="main-nav" />
+        
+        <Navbar.Collapse id="main-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/home">
+              <HouseDoorFill className="me-1" />
+              Home
+            </Nav.Link>
           </Nav>
-        </Navbar>
+
+          <Nav className="align-items-center">
+            {isLoggedIn ? (
+              <>
+                <Button 
+                  variant="outline-success" 
+                  className="user-status me-2"
+                >
+                  <PersonFill className="me-1" />
+                  Online
+                </Button>
+                <Button 
+                  variant="outline-danger" 
+                  onClick={handleLogout}
+                >
+                  <BoxArrowRight className="me-1" />
+                  Atsijungti
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button 
+                  as={Link} 
+                  to="/login" 
+                  variant="outline-light" 
+                  className="me-2"
+                >
+                  Prisijungti
+                </Button>
+                <Button 
+                  as={Link} 
+                  to="/signup" 
+                  variant="primary"
+                >
+                  Registruotis
+                </Button>
+              </>
+            )}
+
+            <NavDropdown 
+              title="Papildomai" 
+              id="additional-dropdown" 
+              className="custom-dropdown ms-2"
+            >
+              <NavDropdown.Item as={Link} to="/features">Funkcijos</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/pricing">Kainodara</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/contacts">Kontaktai</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
 
-export default BasicExample;
-
-                        // <Link to='/Home'>
-                        //     <h1>Mano Pratimai</h1>
-                        // </Link>
-                        // <Link to='/TextToSpeech'>
-                        //     <h1>Sukurti nauja pratima</h1>
-                        // </Link>
-                     
+export default NavigationBar;
