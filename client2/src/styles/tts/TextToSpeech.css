@@ -1,6 +1,6 @@
 /* Pagrindinė struktūra */
 .tts-container {
-  background-color: #f8f9fa;
+  background-color: transparent !important; /* Visiškai permatomas */
   min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
@@ -8,16 +8,20 @@
 }
 
 .tts-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
   width: 100%;
   max-width: 800px;
 }
 
 /* Tekstinė dalis */
 .tts-title {
-  color: #444;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-weight: 700;
   text-align: center;
 }
@@ -27,11 +31,20 @@
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.tts-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .tts-textarea:focus {
-  border-color: #555;
-  box-shadow: 0 0 0 0.25rem rgba(85, 85, 85, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.1);
 }
 
 /* Kontrolės */
@@ -46,51 +59,60 @@
 .tts-select {
   cursor: pointer;
 }
+.form-label {
+  color: white !important;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
 
 /* Mygtukai */
 .tts-main-button {
-  background-color: #444;
-  border: none;
+  background: rgba(68, 68, 68, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white;
+  transition: all 0.3s;
   width: 100%;
-  padding: 0.75rem;
-  transition: all 0.2s;
 }
 
 .tts-main-button:hover {
-  background-color: #555;
+  background: rgba(85, 85, 85, 0.9) !important;
   transform: translateY(-2px);
 }
 
 .tts-settings-toggle {
-  border: 1px solid #444;
-  color: #444;
-  background: transparent;
+  border: 1px solid #444 !important;
+  color: #fff !important;
+  background: rgba(68, 68, 68, 0.7) !important;
+  margin-top: 30px;
 }
 
 .tts-settings-toggle:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(85, 85, 85, 0.9) !important;
 }
 
 /* Progress bar */
 .tts-progress-bar .progress-bar {
-  background-color: #444;
+  background-color: #555;
   transition: width 0.3s ease;
 }
 
 /* Nustatymų panelė */
 .tts-settings-panel {
-  background-color: #f9f9f9;
+  background: rgba(249, 249, 249, 0.2);
   border-radius: 12px;
-  border: 1px solid #eee;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .tts-card {
-    border-radius: 0;
     padding: 1.5rem !important;
+    border-radius: 12px;
   }
-
+  .tts-container {
+    padding: 1rem;
+    backdrop-filter: blur(5px);
+  }
   .tts-controls {
     flex-direction: column;
   }

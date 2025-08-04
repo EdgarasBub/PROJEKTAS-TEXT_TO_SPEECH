@@ -8,32 +8,58 @@ const NavigationBar = () => {
   const { isLoggedIn, logout } = useAuth();
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="fixed-navbar">
+    <Navbar expand="lg" className="fixed-navbar" variant="dark">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">Speech4You</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+          <span className="text-gradient">Speech4You</span>
+        </Navbar.Brand>
+        
+        <Navbar.Toggle aria-controls="main-nav" className="border-0">
+          <div className="animated-hamburger">
+            <span className="glass-bar"></span>
+            <span className="glass-bar"></span>
+            <span className="glass-bar"></span>
+          </div>
+        </Navbar.Toggle>
+
+        <Navbar.Collapse id="main-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/home">Home</Nav.Link>
+            <Nav.Link as={Link} to="/home" className="nav-glass-link">Home</Nav.Link>
+            <Nav.Link as={Link} to="/texttospeech" className="nav-glass-link">TTS</Nav.Link>
           </Nav>
-          <Nav>
+          
+          <Nav className="align-items-center">
             {isLoggedIn ? (
               <>
-                <Button variant="outline-success" className="me-2">
-                  <PersonFill className="me-1" />
-                  Online
+                <Button variant="glass" className="me-3 auth-button">
+                  <PersonFill className="me-2" />
+                  <span className="status-indicator"></span> Online
                 </Button>
-                <Button variant="outline-danger" onClick={logout}>
-                  <BoxArrowRight className="me-1" />
+                <Button 
+                  variant="glass-danger" 
+                  onClick={logout}
+                  className="auth-button"
+                >
+                  <BoxArrowRight className="me-2" />
                   Atsijungti
                 </Button>
               </>
             ) : (
               <>
-                <Button as={Link} to="/login" variant="outline-light" className="me-2">
+                <Button 
+                  as={Link} 
+                  to="/login" 
+                  variant="glass" 
+                  className="me-3 auth-button"
+                >
                   Prisijungti
                 </Button>
-                <Button as={Link} to="/signup" variant="primary">
+                <Button 
+                  as={Link} 
+                  to="/signup" 
+                  variant="glass-primary"
+                  className="auth-button"
+                >
                   Registruotis
                 </Button>
               </>

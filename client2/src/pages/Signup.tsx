@@ -71,9 +71,9 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <main className="auth-page">
-      <div className="auth-container">
-        <h2 className="signup-header">📝 Naujos paskyros kūrimas</h2>
+    <main className="auth-page ">
+      <div className="auth-container glass-card">
+        <h2 className="signup-header glass-title">📝 Naujos paskyros kūrimas</h2>
         
         {error && <div className="auth-error">{error}</div>}
 

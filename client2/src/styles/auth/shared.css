@@ -1,19 +1,39 @@
-/* shared.css */
-/* TIK GLOBALŪS ELEMENTAI */
+/* shared.css - Glass Edition */
 .site-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url("@/assets/background.jpg");
-  background-size: cover;
-  background-position: center;
+  background: url("@/assets/background.jpg") center/cover no-repeat fixed;
 }
 
-.main-content {
-  flex: 1;
-  padding-top: 80px;
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: transparent;
+  backdrop-filter: blur(5px);
 }
 
-.container-xxl {
-  max-width: 1400px;
+.auth-container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.auth-input-group {
+  margin-bottom: 1.5rem;
+}
+
+.auth-input-group label {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }

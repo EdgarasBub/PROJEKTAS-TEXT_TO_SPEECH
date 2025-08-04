@@ -1,27 +1,45 @@
-/* Pagrindiniai stiliai */
+/* HOME.CSS - Atnaujinta su Glass Effect */
+
+/* Pagrindinis konteineris */
 .home-container {
-  background-color: #f8f9fa;
+  background: transparent;
   min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
+/* Turinio kortelė */
 .home-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Tekstiniai elementai */
 .home-title {
-  color: #444;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-weight: 800;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .home-description {
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 /* Funkcijų tinklelis */
@@ -33,37 +51,65 @@
 }
 
 .feature-item {
-  background: #f9f9f9;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 2rem;
   transition: all 0.3s ease;
-  border: 1px solid #eee;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .feature-item:hover {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border-color: #ddd;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .feature-item h3 {
-  color: #444;
+  color: white;
   margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
 .feature-item p {
-  color: #555;
+  color: rgba(255, 255, 255, 0.8);
   min-height: 60px;
+  line-height: 1.5;
 }
 
 /* Mygtukai */
 .btn-dark {
-  background-color: #444 !important;
-  border: none;
-  padding: 0.5rem 1.5rem;
+  background: rgba(68, 68, 68, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
 }
 
 .btn-dark:hover {
-  background-color: #555 !important;
+  background: rgba(85, 85, 85, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsyvumas */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 1rem;
+    backdrop-filter: blur(3px);
+  }
+
+  .home-card {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-item {
+    padding: 1.5rem;
+  }
 }

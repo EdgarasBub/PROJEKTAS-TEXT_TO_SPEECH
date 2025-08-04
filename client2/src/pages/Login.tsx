@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Envelope, Lock, ArrowRightCircle } from 'react-bootstrap-icons';
 import '../styles/auth/shared.css';
 import '../styles/auth/login.css';
 
@@ -9,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -21,16 +23,17 @@ const Login = () => {
       const response = await fetch('http://localhost:5001/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, rememberMe }),
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error(data.message || 'Login failed');
+      if (!response.ok) throw new Error(data.message || 'Prisijungti nepavyko');
 
       login(data.token);
       navigate('/home');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login error');
+      setError(err instanceof Error ? err.message : 'Prisijungimo klaida');
+      console.error('Login error:', err);
     } finally {
       setIsLoading(false);
     }
@@ -38,12 +41,18 @@ const Login = () => {
 
   return (
     <main className="auth-page">
-      <div className="auth-container">
-        <h2>🔐 Prisijungimas</h2>
-        {error && <div className="auth-error">{error}</div>}
+      <div className="auth-container glass-card">
+        <h2 className="login-header">
+          <span className="text-gradient-login">🔐 Prisijungimas</span>
+        </h2>
+        
+        {error && <div className="auth-error glass-error">{error}</div>}
+
         <form onSubmit={handleSubmit}>
           <div className="auth-input-group">
-            <label htmlFor="email">El. paštas</label>
+            <label htmlFor="email">
+              <Envelope className="input-icon" /> El. paštas
+            </label>
             <input
               type="email"
               id="email"
@@ -51,10 +60,14 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="auth-input"
+              placeholder="įveskite@el.paštas.lt"
             />
           </div>
+
           <div className="auth-input-group">
-            <label htmlFor="password">Slaptažodis</label>
+            <label htmlFor="password">
+              <Lock className="input-icon" /> Slaptažodis
+            </label>
             <input
               type="password"
               id="password"
@@ -62,12 +75,49 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="auth-input"
+              placeholder="••••••••"
             />
           </div>
-          <button type="submit" className="auth-button" disabled={isLoading}>
-            {isLoading ? 'Prisijungiama...' : 'Prisijungti'}
+
+          <div className="auth-options">
+            <label className="auth-checkbox glass-checkbox">
+              <input 
+                type="checkbox" 
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <span>Prisiminti mane</span>
+            </label>
+
+            <Link to="/forgot-password" className="auth-link-button glass-link">
+              Pamiršote slaptažodį?
+            </Link>
+          </div>
+
+          <button 
+            type="submit" 
+            className="auth-button glass-button"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="auth-spinner"></span>
+                Prisijungiama...
+              </>
+            ) : (
+              <>
+                Prisijungti <ArrowRightCircle className="ms-2" />
+              </>
+            )}
           </button>
         </form>
+
+        <div className="auth-footer">
+          <p>Neturite paskyros?</p>
+          <Link to="/signup" className="auth-link glass-link">
+            Registruokitės
+          </Link>
+        </div>
       </div>
     </main>
   );

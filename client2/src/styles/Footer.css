@@ -1,117 +1,50 @@
-/* Pagrindiniai stiliai */
+/* FOOTER - Glass Edition */
 .site-footer {
-  background-color: #343a40;
-  color: #fff;
+  background: rgba(30, 30, 30, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem 0;
-  margin-top: auto;
 }
 
-.footer-content {
-  padding-bottom: 1.5rem;
-}
-
-/* Sekcijų stiliai */
-.footer-section {
-  margin-bottom: 1.5rem;
-}
-
-.footer-heading {
-  color: #fff;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.footer-heading::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50px;
-  height: 2px;
-  background: #28a745;
-}
-
-/* Sąrašai ir nuorodos */
-.footer-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.footer-list li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-}
-
+/* Nuorodos */
 .footer-link {
   color: #adb5bd;
-  text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  padding: 0.3rem 0;
+  display: inline-block;
 }
 
 .footer-link:hover {
-  color: #28a745;
-  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9) !important; /* Kaip navbar hover */
+  transform: translateY(-1px);
 }
 
 /* Ikonos */
 .footer-icon {
+  color: rgba(255, 255, 255, 0.7);
   margin-right: 0.5rem;
-  color: #28a745;
-  width: 1rem;
 }
 
 /* Social media */
-.social-icons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .social-link {
   color: #adb5bd;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  transition: color 0.3s;
 }
 
 .social-link:hover {
-  color: #28a745;
+  color: rgba(255, 255, 255, 0.9) !important; /* Kaip navbar */
 }
 
-.social-icon {
-  margin-right: 0.5rem;
-  font-size: 1.2rem;
-}
-
-/* Apatinė dalis */
+/* Apatinė eilutė */
 .footer-bottom {
-  border-top: 1px solid #495057;
-  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .copyright {
-  color: #6c757d;
-  margin: 0;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
 }
-
-/* Responsyvumas */
-@media (max-width: 768px) {
-  .footer-section {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .footer-heading::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .social-icons {
-    align-items: center;
-  }
+.footer-heading {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }

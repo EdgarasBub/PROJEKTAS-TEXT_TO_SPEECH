@@ -136,7 +136,7 @@ const TextToSpeech: React.FC = () => {
           <Button
             onClick={() => setIsSettingsOpen(!isSettingsOpen)}
             className="tts-settings-toggle"
-            variant="outline-primary"
+            // variant="outline-primary"
           >
             {isSettingsOpen ? '❌ Uždaryti' : '⚙️ Nustatymai'}
           </Button>

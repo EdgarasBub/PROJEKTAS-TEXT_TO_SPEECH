@@ -1,35 +1,78 @@
-/* Unikalus login stiliai */
+/* login.css - Glass Edition */
 .login-header {
-  color: #333;
+  color: rgba(255, 255, 255, 0.9) !important;
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 1rem;
 }
 
-.auth-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem 0;
+.login-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
-.auth-checkbox {
+.input-icon {
+  margin-right: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.glass-checkbox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.glass-checkbox input {
+  accent-color: rgba(255, 255, 255, 0.7);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.glass-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.glass-error {
+  background: rgba(255, 65, 54, 0.2) !important;
+  border: 1px solid rgba(255, 65, 54, 0.4) !important;
+  backdrop-filter: blur(5px);
+}
+
+.auth-options {
+  margin: 1.5rem 0;
 }
 
 .auth-link-button {
   background: none;
   border: none;
-  color: #444;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 0;
-  text-decoration: underline;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
 .auth-link-button:hover {
-  color: #555;
+  color: white !important;
+  text-decoration: underline;
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-footer p {
+  margin-bottom: 0.5rem;
 }
