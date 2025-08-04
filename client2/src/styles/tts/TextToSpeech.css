@@ -68,7 +68,7 @@
 /* Mygtukai */
 .tts-main-button {
   background: rgba(68, 68, 68, 0.7) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: rgba(68, 68, 68, 0.7) !important;
   color: white;
   transition: all 0.3s;
   width: 100%;
