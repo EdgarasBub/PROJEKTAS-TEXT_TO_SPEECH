@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import "../styles/Home.css";
-import '../styles/Utils.css';
+// import '../styles/Utils.css';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

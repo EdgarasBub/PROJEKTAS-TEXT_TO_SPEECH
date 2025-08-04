@@ -10,12 +10,14 @@ import TextToSpeech from './pages/TextToSpeech';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/footer.css';
 import './styles/auth/shared.css'; // <-- PRIDĖTA (jei dar neegzistuoja)
+import backgroundImg from '@/assets/background.jpg';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="site-wrapper">
+        <div className="site-wrapper"
+          style={{ backgroundImage: `url(${backgroundImg})` }}>
           <NavigationBar />
           
           <main className="main-content">
@@ -26,8 +28,6 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/texttospeech" element={<TextToSpeech />} />
-                {/* Galimi papildomi maršrutai: */}
-                {/* <Route path="/privacy" element={<PrivacyPolicy />} /> */}
               </Routes>
             </Container>
           </main>

@@ -1,0 +1,102 @@
+/* Pagrindinė struktūra */
+.tts-container {
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tts-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Tekstinė dalis */
+.tts-title {
+  color: #444;
+  font-weight: 700;
+  text-align: center;
+}
+
+.tts-textarea {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.tts-textarea:focus {
+  border-color: #555;
+  box-shadow: 0 0 0 0.25rem rgba(85, 85, 85, 0.1);
+}
+
+/* Kontrolės */
+.tts-controls {
+  gap: 1rem;
+}
+
+.tts-voice-selector {
+  flex-grow: 1;
+}
+
+.tts-select {
+  cursor: pointer;
+}
+
+/* Mygtukai */
+.tts-main-button {
+  background-color: #444;
+  border: none;
+  width: 100%;
+  padding: 0.75rem;
+  transition: all 0.2s;
+}
+
+.tts-main-button:hover {
+  background-color: #555;
+  transform: translateY(-2px);
+}
+
+.tts-settings-toggle {
+  border: 1px solid #444;
+  color: #444;
+  background: transparent;
+}
+
+.tts-settings-toggle:hover {
+  background-color: #f0f0f0;
+}
+
+/* Progress bar */
+.tts-progress-bar .progress-bar {
+  background-color: #444;
+  transition: width 0.3s ease;
+}
+
+/* Nustatymų panelė */
+.tts-settings-panel {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tts-card {
+    border-radius: 0;
+    padding: 1.5rem !important;
+  }
+
+  .tts-controls {
+    flex-direction: column;
+  }
+
+  .tts-voice-selector {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

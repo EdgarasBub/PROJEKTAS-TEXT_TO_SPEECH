@@ -8,5 +8,5 @@
 }
 .utils-button:hover {
   background-color: #555;
-    transition: background-color 0.7s ease;
+  transition: background-color 0.7s ease;
 }
