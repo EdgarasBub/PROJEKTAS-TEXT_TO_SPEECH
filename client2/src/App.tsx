@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import TextToSpeech from './pages/TextToSpeech';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/footer.css';
+import './styles/Footer.css';
 import './styles/auth/shared.css'; // <-- PRIDĖTA (jei dar neegzistuoja)
 import backgroundImg from '@/assets/background.jpg';
 
