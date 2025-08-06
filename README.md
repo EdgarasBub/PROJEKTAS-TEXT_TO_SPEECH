@@ -150,3 +150,9 @@ Projektą sukūrė: **Edgariunė** 🦾
 > _"Jei balsas yra siela, tai šis projektas leidžia tavo kodui kalbėti."_
 
 ---
+<img width="1887" height="851" alt="Screenshot 2025-08-06 194807" src="https://github.com/user-attachments/assets/8678b875-4bf6-4342-929a-87d4ee84a89e" />
+<img width="1882" height="845" alt="Screenshot 2025-08-06 194838" src="https://github.com/user-attachments/assets/c7b2f37c-20c7-4188-94ee-e073b0261e18" />
+<img width="1892" height="862" alt="Screenshot 2025-08-06 192414" src="https://github.com/user-attachments/assets/7afc764b-b184-4a50-9e95-c9a8fd54df9a" />
+<img width="1885" height="332" alt="Screenshot 2025-08-06 195009" src="https://github.com/user-attachments/assets/2c56dc68-47c8-42e9-876d-a7154b7c6137" />
+<img width="997" height="842" alt="Screenshot 2025-08-06 195525" src="https://github.com/user-attachments/assets/168e71b4-ff5b-4988-b467-759f1c5f2dde" />
+
