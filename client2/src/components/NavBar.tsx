@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
-import { PersonFill, BoxArrowRight } from 'react-bootstrap-icons';
+import {BoxArrowRight } from 'react-bootstrap-icons';
 import '../styles/NavBar.css';
 
 const NavigationBar = () => {
@@ -32,7 +32,6 @@ const NavigationBar = () => {
             {isLoggedIn ? (
               <>
                 <Button variant="glass" className="me-3 auth-button">
-                  <PersonFill className="me-2" />
                   <span className="status-indicator"></span> Online
                 </Button>
                 <Button 

@@ -98,3 +98,8 @@
     opacity: 1;
   }
 }
+.auth-buttons-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}

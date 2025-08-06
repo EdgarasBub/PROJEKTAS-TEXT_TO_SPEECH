@@ -45,7 +45,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="feature-item">
-            <h3>📚 Edukacinis toolkitas</h3>
+            <h3>📚 Edukacijai</h3>
             <p>Integruotos mokymosi priemonės</p>
             <Button 
               variant="dark" 
