@@ -29,6 +29,10 @@ app.use(cors({
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('🟢 Sveikas! Backend serveris veikia.');
+});
+
 // Maršrutai
 app.use('/api/auth', authRoutes);
 
